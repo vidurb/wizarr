@@ -124,8 +124,9 @@ def init_extensions(app):
     login_manager.login_view = "auth.login"  # type: ignore[assignment]
     db.init_app(app)
 
-    # Enable SQLite WAL mode for concurrent writes
-    _configure_sqlite_for_concurrency(app)
+    # Enable SQLite WAL mode for concurrent writes if using SQLite
+    if app.config["SQLALCHEMY_DATABASE_URI"].startswith("sqlite"):
+        _configure_sqlite_for_concurrency(app)
 
     migrate.init_app(app, db)
     limiter.init_app(app)
