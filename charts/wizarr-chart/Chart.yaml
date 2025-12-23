@@ -1,0 +1,18 @@
+apiVersion: v2
+name: wizarr
+description: A Helm chart for Wizarr, an automatic user invitation system for media servers.
+type: application
+version: 0.1.0
+appVersion: "4.0.0" # Assuming a recent version, can be updated.
+keywords:
+  - wizarr
+  - plex
+  - jellyfin
+  - emby
+  - media
+home: https://github.com/wizarrrr/wizarr
+sources:
+  - https://github.com/wizarrrr/wizarr
+maintainers:
+  - name: vidurb
+
