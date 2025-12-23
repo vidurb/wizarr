@@ -114,18 +114,35 @@ class BaseConfig:
     FORCE_LANGUAGE = os.getenv("FORCE_LANGUAGE")
     # Scheduler
     SCHEDULER_API_ENABLED = True
-    # SQLAlchemy
-    SQLALCHEMY_DATABASE_URI = f"sqlite:///{DATABASE_DIR / 'database.db'}"
+
+    # Database Configuration
+    POSTGRES_USER = os.getenv("POSTGRES_USER")
+    POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+    POSTGRES_DB = os.getenv("POSTGRES_DB")
+    POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
+    POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
+
+    if POSTGRES_USER and POSTGRES_PASSWORD and POSTGRES_DB:
+        SQLALCHEMY_DATABASE_URI = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+        # Postgres engine options
+        SQLALCHEMY_ENGINE_OPTIONS: ClassVar[dict] = {
+            "pool_pre_ping": True,
+            "pool_recycle": 3600,
+        }
+    else:
+        # Fallback to SQLite
+        SQLALCHEMY_DATABASE_URI = f"sqlite:///{DATABASE_DIR / 'database.db'}"
+        # SQLite engine options for concurrent write support
+        SQLALCHEMY_ENGINE_OPTIONS: ClassVar[dict] = {
+            "connect_args": {
+                "timeout": 30,  # 30 second timeout for lock waits
+                "check_same_thread": False,  # Allow multi-threaded access
+            },
+            "pool_pre_ping": True,  # Verify connections before using
+            "pool_recycle": 3600,  # Recycle connections after 1 hour
+        }
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # SQLite engine options for concurrent write support
-    SQLALCHEMY_ENGINE_OPTIONS: ClassVar[dict] = {
-        "connect_args": {
-            "timeout": 30,  # 30 second timeout for lock waits
-            "check_same_thread": False,  # Allow multi-threaded access
-        },
-        "pool_pre_ping": True,  # Verify connections before using
-        "pool_recycle": 3600,  # Recycle connections after 1 hour
-    }
 
 
 class DevelopmentConfig(BaseConfig):
