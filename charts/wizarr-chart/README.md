@@ -1,6 +1,6 @@
 # wizarr-chart
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2025.12.0](https://img.shields.io/badge/AppVersion-2025.12.0-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2025.12.0](https://img.shields.io/badge/AppVersion-v2025.12.0-informational?style=flat-square)
 
 A Helm chart for Wizarr, an automatic user invitation system for media servers.
 
@@ -31,7 +31,7 @@ A Helm chart for Wizarr, an automatic user invitation system for media servers.
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/wizarrrr/wizarr"` |  |
-| image.tag | string | `"develop"` |  |
+| image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |

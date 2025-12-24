@@ -3,7 +3,7 @@ name: wizarr-chart
 description: A Helm chart for Wizarr, an automatic user invitation system for media servers.
 type: application
 version: 0.1.0
-appVersion: "2025.12.0"
+appVersion: "v2025.12.0"
 keywords:
     - wizarr
     - plex
