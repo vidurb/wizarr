@@ -31,7 +31,7 @@ A Helm chart for Wizarr, an automatic user invitation system for media servers.
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/wizarrrr/wizarr"` |  |
-| image.tag | string | `""` |  |
+| image.tag | string | `"develop"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
